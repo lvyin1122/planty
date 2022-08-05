@@ -1,5 +1,6 @@
 import express from "express";
 import productRoute from "./routes/product.js";
+import cartRoute from "./routes/cart.js";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
@@ -31,6 +32,7 @@ mongoose.connection.on("disconnected", () => {
 app.use(express.json());
 
 app.use("/api/product", productRoute);
+app.use("/api/cart", cartRoute);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

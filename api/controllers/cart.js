@@ -5,7 +5,7 @@ const {
   verifyTokenAndAdmin,
 } = require("./verifyToken");
 
-const createCart = async (req, res, next) => {
+export const createCart = async (req, res, next) => {
     try {
         const cart = new Cart({
         ...req.body,
@@ -17,7 +17,7 @@ const createCart = async (req, res, next) => {
     }
     };
 
-const updateCart = async (req, res, next) => {
+export const updateCart = async (req, res, next) => {
     try {
         const cart = await Cart.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
@@ -28,7 +28,7 @@ const updateCart = async (req, res, next) => {
     }
 }
 
-const deleteCart = async (req, res, next) => {
+export const deleteCart = async (req, res, next) => {
     try {
         const cart = await Cart.findByIdAndDelete(req.params.id);
         res.status(200).json(cart);
@@ -37,7 +37,7 @@ const deleteCart = async (req, res, next) => {
     }
 }
 
-const getUserCart = async (req, res, next) => {
+export const getUserCart = async (req, res, next) => {
     try {
         const cart = await Cart.find({ user: req.params.id });
         res.status(200).json(cart);
@@ -46,7 +46,7 @@ const getUserCart = async (req, res, next) => {
     }
 }
 
-const getAllCarts = async (req, res, next) => {
+export const getAllCarts = async (req, res, next) => {
     try {
         const carts = await Cart.find();
         res.status(200).json(carts);
