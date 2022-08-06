@@ -6,13 +6,18 @@ import {
     getUserCart,
     getCarts,
 } from "../controllers/cart.js";
+import {
+    verifyToken,
+    verifyUser,
+    verifyAdmin,
+} from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-router.post("/", createCart);
-router.put("/:id", updateCart);
-router.delete("/:id", deleteCart);
-router.get("/:id", getUserCart);
-router.get("/", getCarts);
+router.post("/", verifyToken, createCart);
+router.put("/:id", verifyUser, updateCart);
+router.delete("/:id", verifyUser, deleteCart);
+router.get("/:id", verifyUser, getUserCart);
+router.get("/", verifyAdmin, getCarts);
 
 export default router;
